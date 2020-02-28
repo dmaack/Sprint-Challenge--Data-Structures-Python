@@ -8,7 +8,7 @@ class RingBuffer:
         self.storage = DoublyLinkedList()
 
     def append(self, item):
-        pass
+        pass 
 
     def get(self):
         # Note:  This is the only [] allowed
