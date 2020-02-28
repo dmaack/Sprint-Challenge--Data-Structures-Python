@@ -10,35 +10,39 @@ class RingBuffer:
 # Append
     # if the storage length is less than the max capacity
         # add item to tail
-    # otherwise 
-        # if no node
-            # add item to the head 
+        # set current to head
+    # otherwise if at capacity
+        # swap out the current value with incoming item
+        # set current to next
+        # if no current value
             # set current to head
-        # Otherwise
-            # if next of current
-                # insert item after head / current 
-                # set current as next
-                # delete the 'next' / item it is replacing
-            # otherwise if at end of list / back to begining of ring
-                # remove item from the head
-                # add the current item to the head
-                # set the current 'index' to head
+
     def append(self, item):
-        pass 
+        if self.storage.__len__() < self.capacity:
+            self.storage.add_to_tail(item)
+            self.current = self.storage.head
+        else:
+            self.current.value = item
+            self.current = self.current.next
+            if self.current == None:
+                self.current = self.storage.head
+
 
 # GET
-    # initalize a tracker
-    # while there is a begining 
-        # assign list buffer content the values of of the tracker
+    # initalize a tracker 
+    # while there is a node 
+        # append the current node value to intialized tracker
+        # move on to next node
     # return the list buffer contents
 
 
     def get(self):
         # Note:  This is the only [] allowed
+        current_node = self.storage.head
         list_buffer_contents = []
-
-        # TODO: Your code here
-
+        while current_node:
+            list_buffer_contents.append(current_node.value)
+            current_node = current_node.next
         return list_buffer_contents
 
 # ----------------Stretch Goal-------------------
